@@ -1,7 +1,7 @@
 ### Riot Router with webpack and ampersand
 
 #### Assuming you have a webpack project up and running:
-Riot provides the greping route api out of box, so just use it. The handling of mounting / unmounting tags is done with router.renderPage() function. 
+Riot provides the grepping route api out of box, so just use it. The handling of mounting / unmounting tags is done with router.renderPage() function. 
 
 #### router.js
 I wanted a node like router that utilized riots core routing api. All riot is missing is the handling of mounting tags for you.
@@ -49,7 +49,7 @@ app.extend({
 			})
 		})
 
-		// route grepping id
+		// route with parent (uncomment)
 		riot.route('/todos-list/*',function(id){
 			// do something with id then mount tag
 			var store = router.getStore('todos-list')
@@ -65,7 +65,7 @@ app.extend({
 					}
 				})
 			}	
-			
+
 			router.renderPage({
 				name: 'todos-detail',
 				// parentTag: 'todos-list', uncomment to keep the parent
