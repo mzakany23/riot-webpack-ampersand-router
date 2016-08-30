@@ -49,7 +49,7 @@ app.extend({
 						todo = res
 						router.renderPage({
 							name: 'todos-detail',
-							// parentTag: 'todos-list',
+							parentTag: 'todos-list',
 							data: {
 								todo: todo
 							}
@@ -62,7 +62,7 @@ app.extend({
 
 			router.renderPage({
 				name: 'todos-detail',
-				// parentTag: 'todos-list',
+				parentTag: 'todos-list',
 				data: {
 					todo: todo
 				}

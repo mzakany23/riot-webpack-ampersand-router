@@ -51,7 +51,7 @@ app.extend({
 
 		// router with parent (nested)
 		riot.route('/todos-list/*',function(id){
-			// do something with id then render a tag (page)
+			// do something with id then mount tag
 			var store = router.getStore('todos-list')
 			var todo = null
 
@@ -72,9 +72,18 @@ app.extend({
 						
 					}
 				})
+				
 			}	
-		})
 
+			router.renderPage({
+				name: 'todos-detail',
+				parentTag: 'todos-list',
+				data: {
+					todo: todo
+				}
+			})
+		})
+		
 		router.start('app')
 	}
 })

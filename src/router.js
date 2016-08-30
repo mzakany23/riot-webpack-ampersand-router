@@ -13,19 +13,6 @@ String.prototype.toCamelCase = function(str) {
     });    
 }
 
-function getDefaultTag() {
-	return router.routes.defaultTag
-}
-
-function getTag(tagName) {
-	if (tagName) {
-		var key = tagName.toCamelCase(tagName)
-		return router.routes[key] || null
-	} else {
-		return getDefaultTag()
-	}
-}
-
 function setStore(tag) {
 	router.stores[tag.name] = tag.data
 }
