@@ -1,0 +1,7 @@
+require('./app.tag')
+require('./pages/home.tag')
+require('./pages/todos-list.tag')
+require('./tags/todos-detail.tag')
+require('./tags/todo-form.tag')
+require('./tags/todo.tag')
+require('./tags/navigation.tag')
