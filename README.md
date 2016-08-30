@@ -21,6 +21,8 @@ window.app = app
 
 app.extend({
 	init: function() {
+
+		// default route
 		riot.route('/',function(name) {
 			router.renderPage({
 				name: 'app',
@@ -29,7 +31,7 @@ app.extend({
 			})
 		})
 		
-
+		// route with no parent
 		riot.route('/home',function(name) {
 			router.renderPage({
 				name: 'home',
@@ -37,6 +39,7 @@ app.extend({
 			})
 		})
 
+		// route with no parent
 		riot.route('/todos-list',function(name){
 			router.renderPage({
 				name: 'todos-list',
@@ -46,6 +49,7 @@ app.extend({
 			})
 		})
 
+		// route grepping id
 		riot.route('/todos-list/*',function(id){
 			// do something with id then mount tag
 			var store = router.getStore('todos-list')
@@ -61,7 +65,7 @@ app.extend({
 					}
 				})
 			}	
-
+			
 			router.renderPage({
 				name: 'todos-detail',
 				// parentTag: 'todos-list', uncomment to keep the parent
