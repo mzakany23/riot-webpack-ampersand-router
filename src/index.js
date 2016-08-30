@@ -43,26 +43,17 @@ app.extend({
 			if (store) {
 				todo = store.get(id)
 			} else {
-				new Todo({id: parseInt(id)}).fetch({
+				todo = new Todo({id: parseInt(id)}).fetch({
 					url: 'http://localhost:3000' + '/todos/' + id, 
 					success: (col,res,opt) => {
-						todo = res
-						router.renderPage({
-							name: 'todos-detail',
-							parentTag: 'todos-list',
-							data: {
-								todo: todo
-							}
-						})
-						
+						return res
 					}
 				})
-				
 			}	
 
 			router.renderPage({
 				name: 'todos-detail',
-				parentTag: 'todos-list',
+				// parentTag: 'todos-list', uncomment to keep the parent
 				data: {
 					todo: todo
 				}

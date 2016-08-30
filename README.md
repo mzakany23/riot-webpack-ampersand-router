@@ -21,8 +21,6 @@ window.app = app
 
 app.extend({
 	init: function() {
-
-		// default route
 		riot.route('/',function(name) {
 			router.renderPage({
 				name: 'app',
@@ -31,7 +29,7 @@ app.extend({
 			})
 		})
 		
-		// router with no parent
+
 		riot.route('/home',function(name) {
 			router.renderPage({
 				name: 'home',
@@ -39,7 +37,6 @@ app.extend({
 			})
 		})
 
-		// router with no parent
 		riot.route('/todos-list',function(name){
 			router.renderPage({
 				name: 'todos-list',
@@ -49,7 +46,6 @@ app.extend({
 			})
 		})
 
-		// router with parent (nested)
 		riot.route('/todos-list/*',function(id){
 			// do something with id then mount tag
 			var store = router.getStore('todos-list')
@@ -58,33 +54,25 @@ app.extend({
 			if (store) {
 				todo = store.get(id)
 			} else {
-				new Todo({id: parseInt(id)}).fetch({
+				todo = new Todo({id: parseInt(id)}).fetch({
 					url: 'http://localhost:3000' + '/todos/' + id, 
 					success: (col,res,opt) => {
-						todo = res
-						router.renderPage({
-							name: 'todos-detail',
-							parentTag: 'todos-list',
-							data: {
-								todo: todo
-							}
-						})
-						
+						return res
 					}
 				})
-				
 			}	
 
 			router.renderPage({
 				name: 'todos-detail',
-				parentTag: 'todos-list',
+				// parentTag: 'todos-list', uncomment to keep the parent
 				data: {
 					todo: todo
 				}
 			})
 		})
-		
+
 		router.start('app')
+
 	}
 })
 
