@@ -1,12 +1,13 @@
 ### Riot Router with webpack and ampersand
 
 #### Assuming you have a webpack project up and running:
+Riot provides the greping route api out of box, so just use it. The handling of mounting / unmounting tags is done with router.renderPage() function. 
 
-The idea is that you can do routing with nesting very minimally using the riot.js core router api. All you 
-
+#### router.js
+I wanted a node like router that utilized riots core routing api. All riot is missing is the handling of mounting tags for you.
 
 ```javascript
-//index.js
+//index.js (webpack main)
 
 import riot from 'riot'
 import router from './router'
@@ -20,6 +21,8 @@ window.app = app
 
 app.extend({
 	init: function() {
+
+		// default router
 		riot.route('/',function(name) {
 			router.renderPage({
 				name: 'app',
@@ -28,7 +31,7 @@ app.extend({
 			})
 		})
 		
-
+		// router with no parent
 		riot.route('/home',function(name) {
 			router.renderPage({
 				name: 'home',
@@ -36,6 +39,7 @@ app.extend({
 			})
 		})
 
+		// router with no parent
 		riot.route('/todos-list',function(name){
 			router.renderPage({
 				name: 'todos-list',
@@ -45,8 +49,9 @@ app.extend({
 			})
 		})
 
+		// router with parent (nested)
 		riot.route('/todos-list/*',function(id){
-			// do something with id then mount tag
+			// do something with id then render a tag (page)
 			var store = router.getStore('todos-list')
 			var todo = null
 
@@ -59,7 +64,7 @@ app.extend({
 						todo = res
 						router.renderPage({
 							name: 'todos-detail',
-							// parentTag: 'todos-list',
+							parentTag: 'todos-list',
 							data: {
 								todo: todo
 							}
@@ -67,20 +72,10 @@ app.extend({
 						
 					}
 				})
-				
 			}	
-
-			router.renderPage({
-				name: 'todos-detail',
-				// parentTag: 'todos-list',
-				data: {
-					todo: todo
-				}
-			})
 		})
 
 		router.start('app')
-
 	}
 })
 
