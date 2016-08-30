@@ -22,7 +22,7 @@ window.app = app
 app.extend({
 	init: function() {
 
-		// default router
+		// default route
 		riot.route('/',function(name) {
 			router.renderPage({
 				name: 'app',
