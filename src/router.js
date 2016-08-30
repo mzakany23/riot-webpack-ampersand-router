@@ -66,9 +66,6 @@ function initPage(config){
 var router = {
 	stores: {},
 	routes: {},
-	addPage(config) {
-		initPage(config)
-	},
 	renderPage(tag) {
 		mount(tag)
 	},
